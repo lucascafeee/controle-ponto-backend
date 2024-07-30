@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: controle_ponto_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    environment:
+      PORT: 5000
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: controle_ponto_db
+      DB_HOST: db
+      DB_DIALECT: postgres
+    ports:
+      - '5000:5000'
+    depends_on:
+      - db
+    command: npm start
+
+volumes:
+  pgdata:

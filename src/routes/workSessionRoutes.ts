@@ -1,7 +1,7 @@
-import { Router } from 'express';
-import { startWorkSession, endWorkSession, getWorkSessions } from '../controllers/workSessionController';
+import express from 'express';
+import {startWorkSession, endWorkSession, getWorkSessions} from '../controllers/workSessionController';
 
-const router = Router();
+const router = express.Router();
 
 router.post('/start', startWorkSession);
 router.post('/end', endWorkSession);
